@@ -238,12 +238,13 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42
 # Create a SimpleImputer for filling missing values with the median
 imputer = SimpleImputer(strategy='median')
 
+columns_to_impute =['Age']
 # Fit the imputer on the 'Age' column of the training data
-imputer.fit(x_train['Age'].values.reshape(-1, 1))
+imputer.fit(x_train[columns_to_impute])
 
 # Transform the 'Age' column of both the training and test data using the fitted imputer
-x_train['Age'] = imputer.transform(x_train['Age'].values.reshape(-1, 1))
-x_test['Age'] = imputer.transform(x_test['Age'].values.reshape(-1, 1))
+x_train[columns_to_impute] = imputer.transform(x_train[columns_to_impute])
+x_test[columns_to_impute] = imputer.transform(x_test[columns_to_impute])
 
 # print(x_train)
 # print(x_train.isna().sum())
@@ -275,6 +276,7 @@ lr_model=LogisticRegression()
 lr_model.fit(x_train,y_train)
 
 # Evaluate the Model
+# Score => method calculates the accuracy of the model's predictions on the test data.
 lr_score=lr_model.score(x_test,y_test)
 
 print(f'Logistic Regression accuracy : {lr_score}')
@@ -308,15 +310,18 @@ svc_model.fit(x_train,y_train)
 #Evaluate the Model
 svc_score=svc_model.score(x_test,y_test)
 
-# print(f'SVC accuracy : {svc_score}')
+print(f'SVC accuracy : {svc_score}')
 
 # Generate a classification report
 y_predict=svc_model.predict(x_test)
+print(f'y-predict :\n {y_predict}')
+print('\n')
 report_svc=classification_report(y_test,y_predict)
 print(f'SVC Report \n {report_svc}')
 
 # ======================================================================
 
+# Evaluate for Classification.
 
 # Accuracy 
 accuracy=accuracy_score(y_test,y_predict)
