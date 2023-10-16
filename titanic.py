@@ -355,7 +355,7 @@ print(f'Confussion Matrix : {conf_matrix}')
 # 3) Cabin 204 / 891 missing value => 687     Done with drop
 # 4) Embarked 889 / 891 missing value => 2    Done with mode
 # 5) There is no Dublicated Value
-# 6) Features you can drop => PassengerId / Name / Ticket / 
+# 6) Features you can drop => PassengerId / Name / Ticket / Cabin
 # 7) in pclass the third class is more than other i mean more than 1 class and 2 class.
 # 8) Most of the people participating are between approximately 20 and 40 years old.
 # 9) The percentage of people who died is more than the percentage of people who are alive.
